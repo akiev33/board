@@ -20,7 +20,7 @@ class Post(models.Model):
 
 class Categories(models.Model):
     cate = models.CharField(max_length=100)
-
+    parent = models.ForeignKey('Categories', null=True, blank=True, on_delete=models.SET_NULL)
     def __str__(self):
         return f'{self.cate}'
 

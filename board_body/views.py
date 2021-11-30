@@ -35,7 +35,6 @@ class PostUpdateView(generic.UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'board_crud/update.html'
-    # success_url = reverse_lazy('detail')
     def get_success_url(self):
         post_id = self.kwargs['pk']
         return reverse_lazy('detail', kwargs={
