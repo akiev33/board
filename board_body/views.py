@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -20,22 +20,36 @@ class PostListView(generic.ListView):
 
 class PostDetailView(generic.DetailView):
     model = Post
-    template_name = 'board_crud/board_detail.html'
+    template_name = 'post_crud/post_detail.html'
     context_object_name = 'post'
+    def get_success_url(self):
+        post_id = self.kwargs['pk']
+        return reverse_lazy('detail', kwargs={
+            'pk': post_id})
 
 
 class PostCreateView(generic.CreateView):
     model = Post
     form_class = PostForm
-    template_name = 'board_crud/create.html'
+    template_name = 'post_crud/create.html'
     success_url = reverse_lazy('index')
+
 
 
 class PostUpdateView(generic.UpdateView):
     model = Post
     form_class = PostForm
-    template_name = 'board_crud/update.html'
+    template_name = 'post_crud/update.html'
     def get_success_url(self):
         post_id = self.kwargs['pk']
         return reverse_lazy('detail', kwargs={
             'pk': post_id})
+
+
+
+class PostDeleteView(generic.DeleteView):
+    model = Post
+    form_class = PostForm
+    template_name = 'post_crud/delete.html'
+    success_url = reverse_lazy('index')
+

@@ -16,6 +16,8 @@
 	<body class="is-preload">
 		{% if user.is_authenticated %}
 			Hi {{ user.username }}!
+			<a class="btn btn-default" href="{% url 'create'%}"><span class="glyphicon glyphicon-pencil">create</span></a>
+
 		{% else %}
 		<p>You are not logged in</p>
 		<a href="{% url 'login' %}">Log In</a>
@@ -28,7 +30,7 @@
 						<div class="inner">
 
 							<!-- Logo -->
-								<a href="index.html" class="logo">
+								<a href="{% url 'index' %}" class="logo">
 									<span class="symbol"><img src="{% static 'images/logo.svg' %}" alt="" /></span><span class="title">BOARD KG</span>
 								</a>
 
@@ -68,7 +70,8 @@
 										<img src="{{post.image.url}}" alt="" width="200" height="230" />
 <!--										<img src="{% static 'images/pic01.jpg' %}" alt="" />-->
 									</span>
-									<a href="post_detail.html">
+
+									<a href="{% url 'detail' pk=post.pk %}">
 										<h2>{{post.name}}</h2>
 										<div class="content">
 											<p>{{post.description}}</p>

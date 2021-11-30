@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +6,22 @@
     <title>detail</title>
 </head>
 <body>
-{{post.name}}
-{{post.description}}
-{{post.price}}
-{{post.number}}
-{{post.categories}}
-{{post.condition}}
 
-<img src="{{post.image.url}}">
+    <img src="{{post.image.url}}">
+    {{post.name}}
+    {{post.description}}
+    {{post.price}}
+    {{post.number}}
+    {{post.categories}}
+    {{post.condition}}
+    {% if user.is_authenticated %}
+        <a class="btn btn-default" href="{% url 'update' pk=post.pk %}"><span class="glyphicon glyphicon-pencil">update</span></a>
+
+        <a class="btn btn-default" href="{% url 'delete' pk=post.pk %}"><span class="glyphicon glyphicon-pencil">delete</span></a>
+
+    {% endif %}
+
+
+
 </body>
 </html>
